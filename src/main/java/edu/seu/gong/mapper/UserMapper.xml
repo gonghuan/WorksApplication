@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.seu.gong.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="edu.seu.gong.model.User">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="nickName" jdbcType="CHAR" property="nickName"></result>
+		<result column="realName" jdbcType="CHAR" property="realName"></result>
+		<result column="password" jdbcType="CHAR" property="password"></result>
+	</resultMap>
+	
+	<select id="selectByNameAndPwd" parameterType="java.lang.String"  resultType="edu.seu.gong.model.User">
+		select * from user where nickName = #{nickName, jdbcType=CHAR} and password = #{password, jdbcType=CHAR}
+	</select>
+</mapper>
