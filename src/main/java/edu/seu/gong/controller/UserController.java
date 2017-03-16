@@ -38,12 +38,10 @@ public class UserController {
 		String nickName = req.getParameter("nickName");
 		String password = req.getParameter("password");
 		if (userService.login(nickName, password) == null) {
-			return null;
+			return "register.jsp";
 		} else{
 			logger.info(JSON.toJSONString(userService.login(nickName, password)));
-			user = userService.login(nickName, password);
-			if(user != null) return "index.jsp";
-			else return "reginster.jsp";
+			return "index.jsp";
 		}
 	}
 }
