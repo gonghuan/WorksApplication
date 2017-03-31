@@ -1,0 +1,104 @@
+body
+{
+	font-family:
+	"Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+	font-size:12px;
+	createOrderPage
+}
+ td.details-control 
+ {
+    background: url('../images/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control 
+{
+    background: url('../images/details_close.png') no-repeat center center;
+}
+
+.treeview-menu>li>a 
+{
+	font-size:12px !important;
+	
+}
+.treeview-menu>li>a>img
+{
+	margin-right:8px
+}
+.sidebar-menu>li>a>img{
+	margin-right:4px
+}
+.sidebar-menu{
+	font-size:14px;
+}
+table 
+{
+	font-size:12px;
+}
+input button
+{
+	height:30px
+}
+form
+{
+	font-size:12px
+}
+th
+{
+	text-align:center
+}
+td
+{
+	text-align:center
+}
+label
+{
+	font-size:12px		
+}
+.extendtable tbody tr td
+{
+	text-align:left;
+}
+.form-control{
+	font-size:12px !important;
+}
+
+.loading{  
+    height:56px;  
+    position: absolute;  
+    top:50%;  
+    left:50%;  
+    line-height:56px;
+    padding-left:60px;  
+    font-size:15px;  
+    background: url(css/fancybox_loading@2x.gif) no-repeat 10px 50%;  
+    opacity: 0.7;  
+    z-index:9999;  
+    -moz-border-radius:20px;  
+    -webkit-border-radius:20px;  
+    border-radius:20px;  
+    filter:progid:DXImageTransform.Microsoft.Alpha(opacity=70);  
+}  
+.layout-boxed .wrapper{
+	max-width:1366px;
+}
+/* .box-header{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+div.modal-body{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+div.box-header>span{
+	padding-left:18px;
+	display: block;
+}
+table>thead>tr>th:FIRST-CHILD{
+	padding-left:18px;
+}
+table>tbody>tr>td:FIRST-CHILD{
+	padding-left:18px;
+}
+table>tbody>tr>td{
+	border-bottom: 1px;
+} */

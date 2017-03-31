@@ -2,6 +2,7 @@ package edu.seu.gong.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,14 +35,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody String login(HttpServletRequest req, HttpServletResponse resp) {
-		String nickName = req.getParameter("nickName");
+	public @ResponseBody int login(HttpServletRequest req, HttpServletResponse resp) {
+		String id = req.getParameter("id");
 		String password = req.getParameter("password");
-		if (userService.login(nickName, password) == null) {
-			return "register.jsp";
+		User user = userService.login(id, password);
+		if (user == null) {
+			return 0;
 		} else{
-			logger.info(JSON.toJSONString(userService.login(nickName, password)));
-			return "index.jsp";
+			logger.info(JSON.toJSONString(user));
+			HttpSession session = req.getSession();
+			session.setAttribute("user", user);
+			return 1;
 		}
 	}
 }

@@ -5,23 +5,37 @@ import org.springframework.stereotype.Component;
 @Component
 public class User {
 	
-	private int id;
-	private String nickName;
-	private String realName;
+	private String id;
+	private String gender;
 	private String password;
+	private String realName;
+	private String dept;
+	private String tel;
 	
-	public int getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
-	public String getNickName() {
-		return nickName;
+	public String getGender() {
+		return gender;
 	}
-	public void setNickName(String nickName) {
-		this.nickName = nickName == null ? null : nickName.trim();
+	public void setGender(String gender) {
+		this.gender = gender == null ? null : gender.trim();
+	}
+	public String getDept() {
+		return dept;
+	}
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 	public String getRealName() {
 		return realName;

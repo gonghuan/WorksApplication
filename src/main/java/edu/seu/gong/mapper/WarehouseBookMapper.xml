@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.seu.gong.mapper.WarehouseBookMapper">
+<resultMap type="edu.seu.gong.model.WarehouseBook" id="WarehouseBookResultMap">
+	<result column="ISBN" jdbcType="CHAR" property="ISBN"></result>
+	<result column="quantity" jdbcType="INTEGER" property="quantity"></result>
+	<result column="ceiling" jdbcType="INTEGER" property="ceiling"></result>
+	<result column="floor" jdbcType="INTEGER" property="floor"></result>
+	<result column="warehouse_name" jdbcType="CHAR" property="warehouse_name"></result>
+		<association property="book" javaType="edu.seu.gong.model.Book">
+			<id column="book_id" jdbcType="CHAR" property="bookId"></id>
+			<result column="ISBN" jdbcType="CHAR" property="ISBN"></result>
+			<result column="name" jdbcType="CHAR" property="name"></result>
+			<result column="author" jdbcType="CHAR" property="author"></result>
+			<result column="edition" jdbcType="CHAR" property="edition"></result>
+			<result column="press" jdbcType="CHAR" property="press"></result>
+			<result column="price" jdbcType="DOUBLE" property="price"></result>
+			<result column="true_price" jdbcType="DOUBLE" property="truePrice"></result>
+			<result column="in_price" jdbcType="DOUBLE" property="inPrice"></result>
+			<result column="category" jdbcType="CHAR" property="category"></result>
+		</association>
+</resultMap>
+
+<select id="selectAllWarehouseBookWarn" resultMap="WarehouseBookResultMap">
+	select * from warehouse_book, book where warehouse_book.ISBN = book.ISBN and
+	 (quantity &gt; ceiling or quantity &lt; floor) 
+</select>
+
+<select id="selectAllPickupApplication" resultType="edu.seu.gong.model.applicationfromstores">
+	select * from applicationfromstores where operation = 0 and status = 0
+</select>
+
+<update id="updateApplicationFromstores">
+	update applicationfromstores set transport = #{transport}, transport_price = #{transportPrice},
+	status = '2' where id = #{id}
+</update>
+</mapper>

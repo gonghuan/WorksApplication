@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="edu.seu.gong.model.User"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%User user = (User)session.getAttribute("user"); %>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>登录</title>
@@ -11,11 +12,11 @@
 </head>
 <body style="margin:0 auto; text-align:center">
 	<div class="container col-md-8">
-		<form role="form" action="login.do" class="form-horizontal" method='post'>
+		<form role="form" action="login.do" class="form-horizontal">
 			<div class="form-group col-md-12">
-				<label class="col-sm-4 control-label" for="nickNameInput">昵称</label>
+				<label class="col-sm-4 control-label" for="idInput">职工号</label>
 				<div class="col-sm-8">
-					<input type="text" class="form-control" id="nickNameInput" name="nickName" placeHolder="请输入昵称" required="required">
+					<input type="text" class="form-control" id="idInput" name="id" placeHolder="请输入职工号" required="required">
 				</div>
 			</div>
 			<div class="form-group col-md-12">
@@ -26,7 +27,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-8">
-					<button id="btnLogin" type="submit" class="btn btn-primary">登录</button>
+					<button id="btnLogin" type="button" class="btn btn-primary">登录</button>
 				</div>
 			</div>
 		</form>
@@ -35,29 +36,34 @@
 </body>
 <script type="text/javascript">
 $(function(){
-	/* $('#btnLogin').click(function(){
-		var nickName = $('#nickNameInput').val();
+	$('#btnLogin').click(function(){
+		var id = $('#idInput').val();
 		var password = $('#passwordInput').val();
 		$.ajax({
 			type: 'post',
-			url:  "login.do",
-			dataType: 'json',
-			contentType: 'application/json; charset=utf-8',
-			data:{nickName : nickName, password : password},
+			url:  '<%=request.getContextPath()%>' + '/login.do',
+			data:{id : id, password : password},
 			success: function(data){
-				alert(data);
-				if(data != undefined && data != null){
-					window.location.href = 'index.jsp';
+				if(data == 1){
+					var dept = "${user.getDept()}";		//EL表达式 
+					if(dept.toLocaleLowerCase().indexOf("w") != -1)
+						window.location.href = "<%=request.getContextPath() %>" + '/warehouseWarning.do';
+					else if(dept.toLocaleLowerCase().indexOf("b") != -1)
+						window.location.href = "<%=request.getContextPath() %>" + '/applyForPickupOrReturn.do';
+					else if(dept.toLocaleLowerCase().indexOf("f") != -1)
+						window.location.href = 'applyForPickupFromStores.do';
+					else if(dept.toLocaleLowerCase().indexOf("s") != -1)
+						window.location.href = 'salesReport.do';
+					else window.location.href = 'index.do'; 
 				}else{
 					alert("用户名或者密码错误");
 				}
 			},
 			error: function(data, status, error){
-				debugger;
 				alert('错误信息：' + error);
 			}
 		});
-	}); */
+	});
 });
 	
 </script>

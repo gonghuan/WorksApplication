@@ -9,6 +9,7 @@
 	</resultMap>
 	
 	<select id="selectByNameAndPwd" parameterType="java.lang.String"  resultType="edu.seu.gong.model.User">
-		select * from user where nickName = #{nickName, jdbcType=CHAR} and password = #{password, jdbcType=CHAR}
+		select * from user where id = #{id, jdbcType=CHAR} and password = #{password, jdbcType=CHAR}
 	</select>
+	
 </mapper>

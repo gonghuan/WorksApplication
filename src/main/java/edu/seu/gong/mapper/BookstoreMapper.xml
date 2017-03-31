@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.seu.gong.mapper.BookstoreMapper">
+
+<select id="getISBNbyName" parameterType="String" resultType="String">
+	select ISBN from book where name = #{name}
+</select>
+
+<insert id="insertApplyForPickUp">
+	insert into applicationfromstores(store_name, warehouse_name, operation,
+	 create_date, ISBN, bookname, status, quantity)
+	 values(#{store_name}, #{warehouse_name}, 0, #{create_date}, #{ISBN}, #{bookname},
+	 0, #{quantity})
+</insert>
+</mapper>

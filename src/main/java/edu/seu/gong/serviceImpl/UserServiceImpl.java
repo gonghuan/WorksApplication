@@ -14,9 +14,9 @@ public class UserServiceImpl implements UserService {
 	private UserMapper userMapper;
 	
 	@Override
-	public User login(String nickName, String password) {
+	public User login(String id, String password) {
 		// TODO Auto-generated method stub
-		return userMapper.selectByNameAndPwd(nickName, password);
+		return userMapper.selectByNameAndPwd(id, password);
 	}
 
 }
