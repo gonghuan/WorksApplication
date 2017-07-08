@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
+import edu.seu.gong.model.Book;
 import edu.seu.gong.service.BookstoreService;
 
 @Controller
